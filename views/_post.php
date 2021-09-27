@@ -32,11 +32,9 @@
                             <div class="input-group mb-3">
                                 <label for="role" class="input-group-text"> <i class="fas fa-user-folder"></i> </label>
                                 <select name="category[]" class="form-select" id="category" multiple>
-                                    <option value="science" >Science</option>
-                                    <option value="IA" >IA</option>
-                                    <option value="Jeux" >Jeux</option>
-                                    <option value="Sport" >Sport</option>
-                                    <option value="Santé" >Santé</option>
+                                    <?php foreach ($cats as $category): ?>
+                                       <option value="<?= $category ?>" <?= get_selected_value('category', $category) ?> ><?=$category?></option>
+                                    <?php endforeach;?>
                                 </select>
                             </div>
                             <?= display_errors($errors,'category');?>

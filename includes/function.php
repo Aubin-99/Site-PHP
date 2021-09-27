@@ -29,7 +29,12 @@ HTML;
 function sanitize($data) {
     if(is_array($data)){
         foreach ($data as $k => $datun){
-            $data[$k] = htmlentities($datun);
+            if(is_array($datun)){
+                sanitize($datun);
+            }else{
+                $data[$k] = htmlentities($datun);
+            }
+
         }
         return $data;
      }
@@ -40,7 +45,12 @@ function not_empty($data){
     if(is_string($data) && (trim($data) == "" || empty($data))) return false;
     if(is_array($data)){
         foreach($data as $datun){
-            if(trim($datun) == "" || empty($datun)) return  false;
+            if(is_array($datun)){
+                not_empty($datun);
+            }elseif (trim($datun) == "" || empty($datun)){
+                return  false;
+            }
+
         }
     }
     return true;
@@ -73,7 +83,18 @@ function get_data(array $tableData, string $field, ?string $databaseValue = null
  * @return string|null
  */
 function get_selected_value(string $field, string $value){
-    if(isset($_POST[$field]) && $_POST[$field]==$value) return 'selected';
+    if(!isset($_POST[$field])) return  null;
+    if(is_array($_POST[$field])){
+        foreach ($_POST[$field] as $item){
+            if($item == $value){
+                return 'selected';
+            }
+        }
+    }elseif (is_string($_POST[$field]) && $_POST[$field]==$value){
+
+        return 'selected';
+    }
+
 
     return null;
 }
