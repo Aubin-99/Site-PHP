@@ -74,6 +74,7 @@ function setActive($path = null){
                         <li class="nav-item submenu">
                             <a class="nav-link d-flex align-items-center">
                                 <strong> Aubin Drawine </strong>
+                                <img src="<?= ds_info('image')?>" alt="" class="rounded-circle rounded-0" width="30px" height="30px">
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
