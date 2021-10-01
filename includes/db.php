@@ -11,3 +11,12 @@ try {
 }catch (PDOException $e){
     die('Erreur : '.$e->getMessage());
 }
+
+function get_categories_for_article(int $id){
+    global $db;
+    $q = $db->prepare("SELECT title FROM post_category pc JOIN category c ON pc.category_id=c.id
+                     WHERE pc.post_id = :id");
+    $q->execute(['id'=>$id]);
+
+    return  $q->fetchAll(PDO::FETCH_OBJ);
+}

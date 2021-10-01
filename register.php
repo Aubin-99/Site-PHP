@@ -79,7 +79,7 @@ if(isset($_POST['add_user'])){
             if(!$successMail){
                 $_SESSION['warning'] = "Echec le mail a été rejété lors de la livraison";
             }*/
-                $_SESSION['success'] = "Vous etes inscris avec succès";
+                $_SESSION['success'] = "Utilisateur ajouté avec succès";
                 redirect_to('user_list.php');
 
         }else{
