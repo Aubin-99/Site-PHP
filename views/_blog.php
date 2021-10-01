@@ -54,55 +54,37 @@
     <div class="container">
         <div class="area-wrapper cc-row"><!-- Wrapper -->
             <div class="blog-left-sidebar px-15"><!-- Left side -->
-                <article class="blog-item cc-row"><!-- Blog item 1 -->
+
+                <?php foreach ($posts as $post):
+
+
+                    $post_categories = get_categories_for_article($post->id)
+
+                    ?>
+                  <article class="blog-item cc-row"><!-- Blog item 1 -->
                     <div class="blog-info text-right px-15"><!-- Item info 1 -->
                         <div class="post-tag">
-                            <a href="#">Développement,</a>
-                            <a class="active" href="#">Technologie,</a>
-                            <a href="#">Programmation,</a>
-                            <a href="#">Python</a>
+                            <?php foreach ($post_categories as $pc): ?>
+                               <a href="#"><?= $pc->title ?></a>
+                            <?php endforeach;?>
                         </div>
                         <ul class="blog-meta">
-                            <li class="author"><a href="#">S. Le Nephilim<i class="fas fa-user"></i></a></li>
-                            <li class="date"><a href="#">13 Aout 2020<i class="fas fa-calendar-alt"></i></a></li>
+                            <li class="author"><a href="#"><?= $post->name.' '.$post->firstname ?><i class="fas fa-user"></i></a></li>
+                            <li class="date"><a href="#"><?= $post->created_at ?><i class="fas fa-calendar-alt"></i></a></li>
                             <li class="consulted"><a href="#">Consulte 1.2M de fois<i class="fas fa-eye"></i></a></li>
                             <li class="comments"><a href="#">197 commentaires<i class="fas fa-comment"></i></a></li>
                         </ul>
                     </div>
                     <div class="blog-post px-15">
-                        <img src="assets/imgs/blog/main-blog/mainBlog-1.jpeg" alt="" class="img"><!-- Img -->
+                        <img src="<?= $post->image ?>" alt="" class="img"><!-- Img -->
                         <div class="blog-details">
-                            <a href="#"><h2>L'impact du hacking chez les non avises</h2></a>
-                            <p class="weight300">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi inventore necessitatibus, repellendus sequi ut voluptates!</p>
+                            <a href="#"><h2><?= $post->title ?></h2></a>
+                            <p class="weight300"><?= $post->content ?></p>
                             <a href="#" class="cc-btn">Lire l'article</a>
                         </div>
                     </div>
                 </article><!-- End blog item 1 -->
-
-                <article class="blog-item cc-row"><!-- Blog item 2 -->
-                    <div class="blog-info text-right px-15">
-                        <div class="post-tag">
-                            <a href="#">Développement,</a>
-                            <a class="active" href="#">Technologie,</a>
-                            <a href="#">Programmation,</a>
-                            <a href="#">Java</a>
-                        </div>
-                        <ul class="blog-meta">
-                            <li class="author"><a href="#">S. Le Nephilim<i class="fas fa-user"></i></a></li>
-                            <li class="date"><a href="#">13 Aout 2020<i class="fas fa-calendar-alt"></i></a></li>
-                            <li class="consulted"><a href="#">Consulte 1.2M de fois<i class="fas fa-eye"></i></a></li>
-                            <li class="comments"><a href="#">197 commentaires<i class="fas fa-comment"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="blog-post px-15">
-                        <img src="assets/imgs/blog/main-blog/mainBlog-2.jpg" alt="" class="img"><!-- img 2 -->
-                        <div class="blog-details">
-                            <a href=""><h2>Java et le développement mobile</h2></a>
-                            <p class="weight300">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, ipsam?...</p>
-                            <a href="" class="cc-btn">Lire l'article <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </article><!-- End blog item 2 -->
+                <?php endforeach;?>
 
                 <nav class="blog-pagination"><!-- Pagination -->
                     <ul class="pagination">

@@ -25,7 +25,8 @@ if(isset($_POST['login'])){
     }
 
     if(empty($errors)){
-        $q = $db->prepare("SELECT * FROM user WHERE email = :username AND active ='1'");
+        $q = $db->prepare("SELECT u.id,name,firstname,email,password,role,created_at,active,
+       born_at,gender,adress,phone,image,bio FROM user u LEFT JOIN user_add ua ON u.id=ua.user_id WHERE email = :username AND active ='1'");
         $q->execute(['username'=>$username]);
         $user = $q->fetch(PDO::FETCH_OBJ);
         if(!$user || !password_verify($password,$user->password)) {

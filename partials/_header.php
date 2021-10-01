@@ -73,7 +73,7 @@ function setActive($path = null){
                         <?php if(logged_in()):?>
                         <li class="nav-item submenu">
                             <a class="nav-link d-flex align-items-center">
-                                <strong> Aubin Drawine </strong>
+                                <strong> <?= ds_info('name').' '.ds_info('firstname') ?> </strong>
                                 <img src="<?= ds_info('image')?>" alt="" class="rounded-circle rounded-0" width="30px" height="30px">
                             </a>
                             <ul class="dropdown-menu">
